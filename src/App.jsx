@@ -1,3 +1,4 @@
+import Developer from "./components/Developer"
 import Home from "./Home"
 
 
@@ -6,7 +7,11 @@ function App() {
 
   return (
     <>
-     <Home></Home>
+    <div className="min-h-screen">
+    <Home></Home>
+    
+    </div>
+     
    </>
   )
 }

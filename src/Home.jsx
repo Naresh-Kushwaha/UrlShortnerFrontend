@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Alert from '@mui/material/Alert';
+import Developer from './components/Developer';
 
 const Home=()=> {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState('');
   const [error, setError] = useState('');
+  const [copySuccess,setCopySuccess]=useState('');
+  
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setShortUrl('');
-
+    setShortUrl("");
+      console.log(url);
     try {
+      setCopySuccess('');
       // Send the URL as a request parameter
-const response = await fetch(`${backendUrl}?url=${encodeURIComponent(url)}`, {
-        method: 'GET', // Specify the method
+const response = await fetch('http://localhost:8087/shorten', {
+        method: 'POST', // Specify the method
+        headers:{
+          'Content-Type':'text/plain',
+        },
+        body:url,
+        
       });
 
       if (!response.ok) {
@@ -28,9 +39,18 @@ const response = await fetch(`${backendUrl}?url=${encodeURIComponent(url)}`, {
       console.error(err);
     }
   };
+  const handleCopy=async()=>{
+    try{
+      await navigator.clipboard.writeText(shortUrl);
+      setCopySuccess('Copied to Clipboard');
+    }catch(err){
+      setCopySuccess('Failed to copy!');
+    }
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className='min-h-screen bg-gray-100 flex flex-col justify-between '>
+    <div className="flex flex-col items-center justify-center mt-52">
       <h1 className="text-3xl font-bold mb-6">URL Shortener</h1>
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
         <input
@@ -59,9 +79,15 @@ const response = await fetch(`${backendUrl}?url=${encodeURIComponent(url)}`, {
           >
             {shortUrl}
           </a>
+          <button onClick={handleCopy} className='bg-[#b146eb] text-white p-1 rounded-md hover:bg-[#9c1ee0] transition duration-200 mx-3 px-2'><ContentCopyIcon></ContentCopyIcon></button>
+          {copySuccess&&<Alert severity="success">{copySuccess}</Alert>
+          }
         </div>
       )}
       {error && <p className="text-red-500 mt-4">{error}</p>}
+     
+      </div>
+      <Developer></Developer>
     </div>
   );
 }
