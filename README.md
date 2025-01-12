@@ -13,6 +13,10 @@ This is a simple URL shortener application that allows you to store and shorten 
 - **MongoDB**: For storing the URL data (MongoDB Atlas for cloud-based hosting) 🌍.
 - **Java**: The primary programming language for implementing the application ☕.
 - **Spring Data MongoDB**: For interacting with the MongoDB database 💾.
+- **Spring Data Redis**: Provides Redis integration.
+- **Redis**: Caching layer
+
+Redis: Caching layer.
 - **React+Vite**: For the frontend 🖥️.
 
 ## Setup Instructions 🛠️
