@@ -25,7 +25,7 @@ This is a simple URL shortener application that allows you to store and shorten 
 live 🎉:  https://urlshort-two.vercel.app/
 ### 1. Clone the Repository 🧑‍💻
 ```bash
-git clone https://github.com/your-username/url-shortener.git
-cd url-shortener
+git clone https://github.com/Naresh-Kushwaha/UrlShortnerFrontend.git
+cd UrlShortnerFrontend
 
 
