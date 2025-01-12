@@ -4,7 +4,7 @@ import Alert from '@mui/material/Alert';
 import Developer from './components/Developer';
 
 const Home=()=> {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState();
   const [shortUrl, setShortUrl] = useState('');
   const [error, setError] = useState('');
   const [copySuccess,setCopySuccess]=useState('');
@@ -18,7 +18,7 @@ const Home=()=> {
     try {
       setCopySuccess('');
       // Send the URL as a request parameter
-const response = await fetch('http://localhost:8087/shorten', {
+const response = await fetch(`${backendUrl}`+'/shorten', {
         method: 'POST', // Specify the method
         headers:{
           'Content-Type':'text/plain',
@@ -84,7 +84,7 @@ const response = await fetch('http://localhost:8087/shorten', {
           }
         </div>
       )}
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+      {error && <p className="text-red-500 mt-4"><Alert severity="error">{error}</Alert></p>}
      
       </div>
       <Developer></Developer>

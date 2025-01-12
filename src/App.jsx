@@ -1,4 +1,4 @@
-import Developer from "./components/Developer"
+
 import Home from "./Home"
 
 
@@ -9,8 +9,6 @@ function App() {
     <>
     <div className="min-h-screen">
     <Home></Home>
-    
-
     </div>
      
    </>
