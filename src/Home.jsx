@@ -87,7 +87,7 @@ const response = await fetch(`${backendUrl}`+'/shorten', {
       {error && <p className="text-red-500 mt-4"><Alert severity="error">{error}</Alert></p>}
      
       </div>
-      <Developer></Developer>
+{/*     <Developer></Developer> */}
     </div>
   );
 }
